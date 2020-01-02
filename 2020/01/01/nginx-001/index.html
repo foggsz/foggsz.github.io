@@ -15,7 +15,7 @@
 <meta property="og:description" content="ngixn编译安装源码目录结构 auto     cc: 编译     lib: 辅助编译     os： 系统特性     types： 辅助编译 CHANGES: 每个版本的特性和bug修复 CHANGES.ru: 俄语版说明 conf: nginx配置示例文件 configure: 用于生成中间文件、编译前的必备动作配置脚本     --with-module: 编译主动需要的模块， 默认不">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-01T13:48:49.000Z">
-<meta property="article:modified_time" content="2020-01-02T02:41:06.042Z">
+<meta property="article:modified_time" content="2020-01-02T12:23:18.492Z">
 <meta property="article:author" content="foggsz">
 <meta name="twitter:card" content="summary">
   
@@ -102,17 +102,27 @@ configure: 用于生成中间文件、编译前的必备动作配置脚本
     --without-mpdule: 编译不需要的模块， 默认参加编译
     --with-cc: 编辑加入特殊特性
     and so on...
-objs: 执行configure命令 生成的中间件文件
+objs: 执行configure命令 生成的中间件文件  nginx版本升级 需要将objs迁移到目标目录
     ngx_modules.c: 编译进nginx的模块列表
+    src: c语言编译生成文件
+    and so on 
 contrib: 脚本文件，语法提示
 html: 文件目录 50x./index.html
 man: nginx 帮助文件,指令介绍
 src: nginx源代码</code></pre><hr>
+<h4 id="编译成功"><a href="#编译成功" class="headerlink" title="编译成功"></a>编译成功</h4><hr>
+<pre><code>./configure 参数  
+make install 
+编译成功目录结构:
+    conf: 如上
+    sbin: nginx二进制文件
+    html: 如上
+    logs: 日志</code></pre><hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck4w4hp970001tvo22pkl1f35" class="article-share-link">Share</a>
+      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck4wpb61z0000kvo23w52dnrn" class="article-share-link">Share</a>
       
       
     </footer>
