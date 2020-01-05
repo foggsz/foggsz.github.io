@@ -15,7 +15,7 @@
 <meta property="og:description" content="ngixn编译安装源码目录结构 auto     cc: 编译     lib: 辅助编译     os： 系统特性     types： 辅助编译 CHANGES: 每个版本的特性和bug修复 CHANGES.ru: 俄语版说明 conf: nginx配置示例文件 configure: 用于生成中间文件、编译前的必备动作配置脚本     --with-module: 编译主动需要的模块， 默认不">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-01T13:48:49.000Z">
-<meta property="article:modified_time" content="2020-01-02T12:34:25.769Z">
+<meta property="article:modified_time" content="2020-01-05T16:26:49.761Z">
 <meta property="article:author" content="foggsz">
 <meta name="twitter:card" content="summary">
   
@@ -119,11 +119,21 @@ make install
     html: 如上
     logs: 日志
 基础语法: 指令块(花括号) 指令(分号结尾，多个参数空格分开)  $(变量)  #(注释)</code></pre><hr>
+<h4 id="重载、热部署"><a href="#重载、热部署" class="headerlink" title="重载、热部署"></a>重载、热部署</h4><hr>
+<pre><code>-s  reload: 重启配置项，不停止服务的情况下，针对的是配置文件修改
+    stop: 停止nginx
+热部署
+1、把当前nginx 化为老文件  cp  sbin/nginx sbin/nginx.old
+2、复制objs生成的nginx二进制文件到 sbin/下 覆盖老nginx   
+3、查看nginx master主进程号  ps -ef | grep nginx
+4、kill -USR2 master进程号  启动升级新的nginx进程 老进程依然存在但不再监听80,443端口
+5、kill -WINCH master进程号  老master进程存在 woker进程退出, 请求现在由新master进程处理
+6、版本回退，cp sbin/nginx.old  kill -WINCH 新的master进程号   kill -HUP 从老的mater进程号 拉起工作进程</code></pre><hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck4wppkga0001rao219aq9ajv" class="article-share-link">Share</a>
+      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck518b8qf00009avxf2pbggkf" class="article-share-link">Share</a>
       
       
     </footer>
