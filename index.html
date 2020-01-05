@@ -98,7 +98,7 @@ conf: nginx配置示例文件
 configure: 用于生成中间文件、编译前的必备动作配置脚本
     --with-module: 编译主动需要的模块， 默认不参加编译
     --without-mpdule: 编译不需要的模块， 默认参加编译
-    --with-cc: 编辑加入特殊特性
+    --with-cc: 编辑加入特性
     and so on...
 objs: 执行configure命令 生成的中间件文件  nginx版本升级 需要将objs迁移到目标目录
     ngx_modules.c: 编译进nginx的模块列表
@@ -128,12 +128,12 @@ make install
 3、查看nginx master主进程号  ps -ef | grep nginx
 4、kill -USR2 master进程号  启动升级新的nginx进程 老进程依然存在但不再监听80,443端口
 5、kill -WINCH master进程号  老master进程存在 woker进程退出, 请求现在由新master进程处理
-6、版本回退，cp sbin/nginx.old  kill -WINCH 新的master进程号   kill -HUP 从老的mater进程号 拉起工作进程</code></pre><hr>
+6、版本回退，cp sbin/nginx.old  sbin/nginx  kill -WINCH 新的master进程号   kill -HUP 从老的mater进程号 拉起工作进程</code></pre><hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck518fzuw0000ckvx8038arjg" class="article-share-link">Share</a>
+      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck518ivk10001dlvx01o82xc6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +184,7 @@ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://foggsz.github.io/2019/12/14/hello-world/" data-id="ck518fzv10001ckvx25lu42o9" class="article-share-link">Share</a>
+      <a data-url="https://foggsz.github.io/2019/12/14/hello-world/" data-id="ck518ivjw0000dlvxdb8maj3l" class="article-share-link">Share</a>
       
       
     </footer>
