@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>nginx-002 | hello world</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ngixn搭建静态服务器及配置缓存搭建静态服务器123456789101112131415161718192021222324252627    http&amp;#123;            listen 8080;             server_name  localhost;            access_log  logs&#x2F;static.access.log;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx-002">
+<meta property="og:url" content="https:&#x2F;&#x2F;foggsz.github.io&#x2F;2020&#x2F;01&#x2F;11&#x2F;nginx-002&#x2F;index.html">
+<meta property="og:site_name" content="hello world">
+<meta property="og:description" content="ngixn搭建静态服务器及配置缓存搭建静态服务器123456789101112131415161718192021222324252627    http&amp;#123;            listen 8080;             server_name  localhost;            access_log  logs&#x2F;static.access.log;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-11T11:34:43.000Z">
+<meta property="article:modified_time" content="2020-01-11T12:50:04.874Z">
+<meta property="article:author" content="foggsz">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="hello world" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">hello world</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://foggsz.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-nginx-002" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/11/nginx-002/" class="article-date">
+  <time datetime="2020-01-11T11:34:43.000Z" itemprop="datePublished">2020-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nginx-002
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ngixn搭建静态服务器及配置缓存"><a href="#ngixn搭建静态服务器及配置缓存" class="headerlink" title="ngixn搭建静态服务器及配置缓存"></a>ngixn搭建静态服务器及配置缓存</h3><h4 id="搭建静态服务器"><a href="#搭建静态服务器" class="headerlink" title="搭建静态服务器"></a>搭建静态服务器</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    http&#123;</span><br><span class="line">            listen 8080; </span><br><span class="line">            server_name  localhost;</span><br><span class="line">            access_log  logs/static.access.log;</span><br><span class="line">            charset utf-8;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                root  $root/;</span><br><span class="line">                index index.html;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            error_page  404  /404.html;   [//]&lt;&gt;自定义错误导向</span><br><span class="line">            location = /404.html &#123;</span><br><span class="line">                root   $root/;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        [//]&lt;&gt;压缩配置</span><br><span class="line">        gzip on; </span><br><span class="line">        gzip_min_length 1;</span><br><span class="line">        gzip_comp_level 2;</span><br><span class="line">        gzip_types text/plain text/css text/javascript   application/x-javascript; [//]&lt;&gt; 压缩类型</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foggsz.github.io/2020/01/11/nginx-002/" data-id="ck59l7of20002mco215a66d5w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/01/nginx-001/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">nginx-001</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/01/11/nginx-002/">nginx-002</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/01/nginx-001/">nginx-001</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/14/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 foggsz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

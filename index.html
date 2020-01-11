@@ -64,6 +64,43 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-nginx-002" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/11/nginx-002/" class="article-date">
+  <time datetime="2020-01-11T11:34:43.000Z" itemprop="datePublished">2020-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/11/nginx-002/">nginx-002</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ngixn搭建静态服务器及配置缓存"><a href="#ngixn搭建静态服务器及配置缓存" class="headerlink" title="ngixn搭建静态服务器及配置缓存"></a>ngixn搭建静态服务器及配置缓存</h3><h4 id="搭建静态服务器"><a href="#搭建静态服务器" class="headerlink" title="搭建静态服务器"></a>搭建静态服务器</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    http&#123;</span><br><span class="line">            listen 8080; </span><br><span class="line">            server_name  localhost;</span><br><span class="line">            access_log  logs/static.access.log;</span><br><span class="line">            charset utf-8;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                root  $root/;</span><br><span class="line">                index index.html;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            error_page  404  /404.html;   [//]&lt;&gt;自定义错误导向</span><br><span class="line">            location = /404.html &#123;</span><br><span class="line">                root   $root/;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        [//]&lt;&gt;压缩配置</span><br><span class="line">        gzip on; </span><br><span class="line">        gzip_min_length 1;</span><br><span class="line">        gzip_comp_level 2;</span><br><span class="line">        gzip_types text/plain text/css text/javascript   application/x-javascript; [//]&lt;&gt; 压缩类型</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://foggsz.github.io/2020/01/11/nginx-002/" data-id="ck59l7of20002mco215a66d5w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-nginx-001" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/01/01/nginx-001/" class="article-date">
@@ -133,7 +170,7 @@ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck518ivk10001dlvx01o82xc6" class="article-share-link">Share</a>
+      <a data-url="https://foggsz.github.io/2020/01/01/nginx-001/" data-id="ck59l7of00001mco236opap40" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +221,7 @@ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://foggsz.github.io/2019/12/14/hello-world/" data-id="ck518ivjw0000dlvxdb8maj3l" class="article-share-link">Share</a>
+      <a data-url="https://foggsz.github.io/2019/12/14/hello-world/" data-id="ck59l7oet0000mco2arni4b6r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -223,6 +260,10 @@ make install
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/01/11/nginx-002/">nginx-002</a>
+          </li>
         
           <li>
             <a href="/2020/01/01/nginx-001/">nginx-001</a>
