@@ -11,6 +11,12 @@
         <content type="html"><![CDATA[<h3 id="ngixn搭建静态服务器"><a href="#ngixn搭建静态服务器" class="headerlink" title="ngixn搭建静态服务器"></a>ngixn搭建静态服务器</h3><h4 id="搭建静态服务器-完整配置文件"><a href="#搭建静态服务器-完整配置文件" class="headerlink" title="搭建静态服务器(完整配置文件)"></a>搭建静态服务器(完整配置文件)</h4><pre><code>    http{               log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;  // 日志格式            listen 8080;             server_name  localhost;            access_log  logs/static.access.log  main;            charset utf-8;            location / {                alias  $root/;                autoindex on;  #当地址闭合时 开启静态资源目录树状显示,供用户选择                index index.html;            }            error_page  404  /404.html; #自定义404            location = /404.html {                limit_rate 1b;  #默认0                root   $root/;            }        }        #(压缩配置)        gzip on;         gzip_min_length 1;        gzip_comp_level 2;        gzip_types text/plain text/css text/javascript   application/x-javascript; #(压缩类型)    }</code></pre><h4 id="root-与-alias的不同"><a href="#root-与-alias的不同" class="headerlink" title="root 与 alias的不同"></a>root 与 alias的不同</h4><pre><code>root 会将匹配到的路径与root路径拼装成完整路径如  location /abc/ {  root  $root/;}  /abc/a.html =&gt; 返回 $root/abc/a.htmlalias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/ {  root  $root/;}  /abc/a.html =&gt; 返回 $root/a.html</code></pre><h5 id="限速"><a href="#限速" class="headerlink" title="限速"></a>限速</h5><pre><code>通过内置变量 limit_rate实现,如  limit_rate 1k,此时以每秒1k的速度 向客户端传输数据</code></pre><h5 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h5><pre><code>指令 log_format main 日志格式  //指定  日志格式变量名   日志格式使用 access_log   /logs/access_log  main  </code></pre><h3 id="ngixn配置反向代理-完整配置文件"><a href="#ngixn配置反向代理-完整配置文件" class="headerlink" title="ngixn配置反向代理(完整配置文件)"></a>ngixn配置反向代理(完整配置文件)</h3><p>需要两个服务配合，建议开个node服务|再下个openresty开启服务</p><pre><code>    http{               upstream local {  #上游服务，一般是内网ip地址,可配置多个，可使用ip_hash等内置算法实现负载均衡                server 127.0.0.1:3333              }            location / {                proxy_set_header  HOST  $HOST   #域名发给上游服务器处理                proxy_set_header   X-Real-IP $remote_addr;  #用户ip                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; #代理转发ip,追加，不可信                proxy_pass http://local            }            error_page  404  /404.html; #自定义404            location = /404.html {                limit_rate 1b;  #默认0                root   $root/;            }        }    }</code></pre><h3 id="ngixn配置缓存"><a href="#ngixn配置缓存" class="headerlink" title="ngixn配置缓存"></a>ngixn配置缓存</h3><pre class=" language-Django"><code class="language-Django"></code></pre>]]></content>
       
       
+      <categories>
+          
+          <category> Nginx </category>
+          
+      </categories>
+      
       
         <tags>
             
@@ -30,6 +36,18 @@
         <content type="html"><![CDATA[<h3 id="ngixn编译安装"><a href="#ngixn编译安装" class="headerlink" title="ngixn编译安装"></a>ngixn编译安装</h3><h4 id="源码目录结构"><a href="#源码目录结构" class="headerlink" title="源码目录结构"></a>源码目录结构</h4><hr><pre><code>auto    cc: 编译    lib: 辅助编译    os： 系统特性    types： 辅助编译CHANGES: 每个版本的特性和bug修复CHANGES.ru: 俄语版说明conf: nginx配置示例文件configure: 用于生成中间文件、编译前的必备动作配置脚本    --with-module: 编译主动需要的模块， 默认不参加编译    --without-mpdule: 编译不需要的模块， 默认参加编译    --with-cc: 编辑加入特性    and so on...objs: 执行configure命令 生成的中间件文件  nginx版本升级 需要将objs迁移到目标目录    ngx_modules.c: 编译进nginx的模块列表    src: c语言编译生成文件    and so on contrib: 脚本文件，语法提示html: 文件目录 50x./index.htmlman: nginx 帮助文件,指令介绍src: nginx源代码</code></pre><hr><h4 id="编译成功"><a href="#编译成功" class="headerlink" title="编译成功"></a>编译成功</h4><hr><pre><code>./configure 参数  make install 编译成功目录结构:    conf: 如上    sbin: nginx启动程序文件    html: 如上    logs: 日志基础语法: 指令块(花括号) 指令(分号结尾，多个参数空格分开)  $(变量)  #(注释)</code></pre><hr><h4 id="重载、热部署"><a href="#重载、热部署" class="headerlink" title="重载、热部署"></a>重载、热部署</h4><hr><pre><code>重载-s  reload: 重启配置项，不停止服务的情况下，针对的是配置文件修改    stop: 停止nginx热部署1、把当前nginx 化为老文件  cp  sbin/nginx sbin/nginx.old2、复制objs生成的nginx二进制文件到 sbin/下 覆盖老nginx   3、查看nginx master主进程号  ps -ef | grep nginx4、kill -USR2 master进程号  启动升级新的nginx进程 老进程依然存在但不再监听80,443端口5、kill -WINCH master进程号  老master进程存在 woker进程退出, 请求现在由新master进程处理6、版本回退，cp sbin/nginx.old  sbin/nginx  kill -WINCH 新的master进程号   kill -HUP 从老的mater进程号 拉起工作进程</code></pre><hr>]]></content>
       
       
+      <categories>
+          
+          <category> Nginx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
       
     </entry>
     
