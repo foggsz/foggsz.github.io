@@ -26,7 +26,7 @@
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.1.1"></head>
+<meta name="generator" content="Hexo 4.1.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -540,7 +540,8 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                ngixn搭建静态服务器搭建静态服务器(完整配置文件)1234567891011121314151617181920212223242526272829http&#123;           log_format  main  '$rem
+                                ngixn搭建静态服务器搭建静态服务器(完整配置文件)    http{   
+            log_format  main  &#39;$remote_addr - $remote_user [$time_local] &qu
                             
                         </div>
                         <div class="publish-info">
@@ -550,12 +551,20 @@
                             <span class="publish-author">
                                 
                                 <i class="fas fa-user fa-fw"></i>
-                                foggsz
+                                fog
                                 
                             </span>
                         </div>
                     </div>
 
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/nginx/">
+                            <span class="chip bg-color">nginx</span>
+                        </a>
+                        
+                    </div>
                     
                 </div>
             </div>
