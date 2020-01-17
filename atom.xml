@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foggsz.github.io/"/>
-  <updated>2020-01-17T07:14:44.163Z</updated>
+  <updated>2020-01-17T07:16:23.279Z</updated>
   <id>https://foggsz.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://foggsz.github.io/2020/01/11/nginx-002/"/>
     <id>https://foggsz.github.io/2020/01/11/nginx-002/</id>
     <published>2020-01-11T11:34:43.000Z</published>
-    <updated>2020-01-17T07:14:44.163Z</updated>
+    <updated>2020-01-17T07:16:23.279Z</updated>
     
     <summary type="html">
     
@@ -36,10 +36,12 @@
     </summary>
     
     
-      <category term="NGINX" scheme="https://foggsz.github.io/categories/NGINX/"/>
+      <category term="Markdown" scheme="https://foggsz.github.io/categories/Markdown/"/>
     
     
-      <category term="Nginx" scheme="https://foggsz.github.io/tags/Nginx/"/>
+      <category term="Typora" scheme="https://foggsz.github.io/tags/Typora/"/>
+    
+      <category term="Markdown" scheme="https://foggsz.github.io/tags/Markdown/"/>
     
   </entry>
   
@@ -71,7 +73,7 @@
     <link href="https://foggsz.github.io/2020/01/01/nginx-001/"/>
     <id>https://foggsz.github.io/2020/01/01/nginx-001/</id>
     <published>2020-01-01T13:48:49.000Z</published>
-    <updated>2020-01-17T07:13:17.864Z</updated>
+    <updated>2020-01-17T07:16:27.194Z</updated>
     
     <summary type="html">
     
@@ -86,10 +88,12 @@
     </summary>
     
     
-      <category term="Nginx学习" scheme="https://foggsz.github.io/categories/Nginx%E5%AD%A6%E4%B9%A0/"/>
+      <category term="Markdown" scheme="https://foggsz.github.io/categories/Markdown/"/>
     
     
-      <category term="Nginx" scheme="https://foggsz.github.io/tags/Nginx/"/>
+      <category term="Typora" scheme="https://foggsz.github.io/tags/Typora/"/>
+    
+      <category term="Markdown" scheme="https://foggsz.github.io/tags/Markdown/"/>
     
   </entry>
   
