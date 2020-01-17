@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>雾</title>
+  
+  <subtitle>五岳寻山不辞远</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://foggsz.github.io/"/>
+  <updated>2020-01-17T06:34:42.239Z</updated>
+  <id>https://foggsz.github.io/</id>
+  
+  <author>
+    <name>foggsz</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx-002</title>
+    <link href="https://foggsz.github.io/2020/01/11/nginx-002/"/>
+    <id>https://foggsz.github.io/2020/01/11/nginx-002/</id>
+    <published>2020-01-11T11:34:43.000Z</published>
+    <updated>2020-01-17T06:34:42.239Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;ngixn搭建静态服务器&quot;&gt;&lt;a href=&quot;#ngixn搭建静态服务器&quot; class=&quot;headerlink&quot; title=&quot;ngixn搭建静态服务器&quot;&gt;&lt;/a&gt;ngixn搭建静态服务器&lt;/h3&gt;&lt;h4 id=&quot;搭建静态服务器-完整配置文件&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Nginx" scheme="https://foggsz.github.io/categories/Nginx/"/>
+    
+    
+      <category term="Nginx" scheme="https://foggsz.github.io/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx-001</title>
+    <link href="https://foggsz.github.io/2020/01/01/nginx-001/"/>
+    <id>https://foggsz.github.io/2020/01/01/nginx-001/</id>
+    <published>2020-01-01T13:48:49.000Z</published>
+    <updated>2020-01-17T06:34:41.335Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;ngixn编译安装&quot;&gt;&lt;a href=&quot;#ngixn编译安装&quot; class=&quot;headerlink&quot; title=&quot;ngixn编译安装&quot;&gt;&lt;/a&gt;ngixn编译安装&lt;/h3&gt;&lt;h4 id=&quot;源码目录结构&quot;&gt;&lt;a href=&quot;#源码目录结构&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Nginx" scheme="https://foggsz.github.io/categories/Nginx/"/>
+    
+    
+      <category term="Nginx" scheme="https://foggsz.github.io/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://foggsz.github.io/2019/12/14/hello-world/"/>
+    <id>https://foggsz.github.io/2019/12/14/hello-world/</id>
+    <published>2019-12-14T11:59:49.458Z</published>
+    <updated>2019-12-16T01:46:54.879Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
