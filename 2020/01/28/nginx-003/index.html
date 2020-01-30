@@ -4,9 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="nginx-002, 雾">
-    <meta name="description" content="ngixn搭建静态服务器搭建静态服务器(完整配置文件)    http{   
-            log_format  main  &amp;#39;$remote_addr - $remote_user [$time_local] &amp;qu">
+    <meta name="keywords" content="nginx-003, 雾">
+    <meta name="description" content="TLS通讯过程验证身份
+达成安全套件共识
+传递密钥
+加密通讯
+
+1、client hello：                2、server:
+     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>nginx-002 | 雾</title>
+    <title>nginx-003 | 雾</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -301,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">nginx-002</h1>
+                    <h1 class="description center-align post-title">nginx-003</h1>
                 </div>
             </div>
         </div>
@@ -448,7 +453,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-11
+                    2020-01-28
                 </div>
                 
 
@@ -465,60 +470,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="ngixn搭建静态服务器"><a href="#ngixn搭建静态服务器" class="headerlink" title="ngixn搭建静态服务器"></a>ngixn搭建静态服务器</h3><h4 id="搭建静态服务器-完整配置文件"><a href="#搭建静态服务器-完整配置文件" class="headerlink" title="搭建静态服务器(完整配置文件)"></a>搭建静态服务器(完整配置文件)</h4><pre><code>    http{   
-            log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
-                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
-                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;  // 日志格式
+                <h3 id="TLS通讯过程"><a href="#TLS通讯过程" class="headerlink" title="TLS通讯过程"></a>TLS通讯过程</h3><pre><code>验证身份
+达成安全套件共识
+传递密钥
+加密通讯
 
-            listen 8080; 
-            server_name  localhost;
-            access_log  logs/static.access.log  main;
-            charset utf-8;
+1、client hello：                2、server:
+     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密套件发送给客户端
+                                3、server  certificate:
+    client  certificate verify     将证书发送给客户端
+                                4、server hello done:
+                                    如果协商的是椭圆曲线算法，在3、4之间将公共参数发送给客户端
+                                    至此双方对安全套件达成共识      
 
-            location / {
-                alias  $root/;
-                autoindex on;  #当地址闭合时 开启静态资源目录树状显示,供用户选择
-                index index.html;
-            }
-
-            error_page  404  /404.html; #自定义404
-            location = /404.html {
-                limit_rate 1b;  #默认0
-                root   $root/;
-            }
-        }
-
-        #(压缩配置)
-        gzip on; 
-        gzip_min_length 1;
-        gzip_comp_level 2;
-        gzip_types text/plain text/css text/javascript   application/x-javascript; #(压缩类型)
-    }
-</code></pre><h4 id="root-与-alias的不同"><a href="#root-与-alias的不同" class="headerlink" title="root 与 alias的不同"></a>root 与 alias的不同</h4><pre><code>root 会将匹配到的路径与root路径拼装成完整路径
-如  location /abc/ {  root  $root/;}  /abc/a.html =&gt; 返回 $root/abc/a.html
-alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/ {  root  $root/;}  /abc/a.html =&gt; 返回 $root/a.html</code></pre><h5 id="限速"><a href="#限速" class="headerlink" title="限速"></a>限速</h5><pre><code>通过内置变量 limit_rate实现,如  limit_rate 1k,此时以每秒1k的速度 向客户端传输数据</code></pre><h5 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h5><pre><code>指令 log_format main 日志格式  //指定  日志格式变量名   日志格式
-使用 access_log   /logs/access_log  main  </code></pre><h3 id="ngixn配置反向代理-完整配置文件"><a href="#ngixn配置反向代理-完整配置文件" class="headerlink" title="ngixn配置反向代理(完整配置文件)"></a>ngixn配置反向代理(完整配置文件)</h3><p>需要两个服务配合，建议开个node服务|再下个openresty开启服务</p>
-<pre><code>    http{   
-            upstream local {  #上游服务，一般是内网ip地址,可配置多个，可使用ip_hash等内置算法实现负载均衡
-                server 127.0.0.1:3333  
-            }
-
-            location / {
-                proxy_set_header  HOST  $HOST   #域名发给上游服务器处理
-                proxy_set_header   X-Real-IP $remote_addr;  #用户ip
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; #代理转发ip,追加，不可信
-                proxy_pass http://local
-            }
-
-            error_page  404  /404.html; #自定义404
-            location = /404.html {
-                limit_rate 1b;  #默认0
-                root   $root/;
-            }
-        }
-    }
-</code></pre><h3 id="ngixn配置缓存"><a href="#ngixn配置缓存" class="headerlink" title="ngixn配置缓存"></a>ngixn配置缓存</h3><pre class=" language-Django"><code class="language-Django"></code></pre>
-
+5、client 根据椭圆曲线算法生成自己的私钥，将公钥给服务端
+6、client 利用服务器端公钥和自己的私钥生成对称加密密钥key
+6、服务器端根据客户端的公钥和自己的私钥依据相同算法生成对称加密密钥key
+7、client finished
+7、server finished</code></pre>
             </div>
             <hr/>
 
@@ -533,7 +502,7 @@ alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://foggsz.github.io" rel="external nofollow noreferrer">fog</a>
+                    <a href="https://foggsz.github.io" rel="external nofollow noreferrer">foggsz</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -543,7 +512,7 @@ alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://foggsz.github.io/2020/01/11/nginx-002/">https://foggsz.github.io/2020/01/11/nginx-002/</a>
+                    <a href="https://foggsz.github.io/2020/01/28/nginx-003/">https://foggsz.github.io/2020/01/28/nginx-003/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,7 +525,7 @@ alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="https://foggsz.github.io" target="_blank">fog</a>
+                    <a href="https://foggsz.github.io" target="_blank">foggsz</a>
                     !
                 </span>
             </div>
@@ -753,7 +722,7 @@ alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/
         repo: 'foggsz.github.io',
         owner: 'foggsz',
         admin: "foggsz",
-        id: '2020-01-11T19-34-43',
+        id: '2020-01-28T20-52-57',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -774,9 +743,10 @@ alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/01/28/nginx-003/">
                     <div class="card-image">
@@ -800,9 +770,60 @@ alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-28
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Nginx/" class="post-category">
+                                    Nginx
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/01/11/nginx-002/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="nginx-002">
+                        
+                        <span class="card-title">nginx-002</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            ngixn搭建静态服务器搭建静态服务器(完整配置文件)    http{   
+            log_format  main  &#39;$remote_addr - $remote_user [$time_local] &qu
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -822,43 +843,6 @@ alias 会替换匹配到的路径，alias路径必须闭合, 如  location /abc/
                         <span class="chip bg-color">Nginx</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/01/01/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            foggsz
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>

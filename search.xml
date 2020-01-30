@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>nginx-003</title>
+      <link href="/2020/01/28/nginx-003/"/>
+      <url>/2020/01/28/nginx-003/</url>
+      
+        <content type="html"><![CDATA[<h3 id="TLS通讯过程"><a href="#TLS通讯过程" class="headerlink" title="TLS通讯过程"></a>TLS通讯过程</h3><pre><code>验证身份达成安全套件共识传递密钥加密通讯1、client hello：                2、server:     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密套件发送给客户端                                3、server  certificate:    client  certificate verify     将证书发送给客户端                                4、server hello done:                                    如果协商的是椭圆曲线算法，在3、4之间将公共参数发送给客户端                                    至此双方对安全套件达成共识      5、client 根据椭圆曲线算法生成自己的私钥，将公钥给服务端6、client 利用服务器端公钥和自己的私钥生成对称加密密钥key6、服务器端根据客户端的公钥和自己的私钥依据相同算法生成对称加密密钥key7、client finished7、server finished</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Nginx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>nginx-002</title>
       <link href="/2020/01/11/nginx-002/"/>
       <url>/2020/01/11/nginx-002/</url>

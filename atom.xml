@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foggsz.github.io/"/>
-  <updated>2020-01-17T07:17:39.851Z</updated>
+  <updated>2020-01-30T08:45:19.007Z</updated>
   <id>https://foggsz.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx-003</title>
+    <link href="https://foggsz.github.io/2020/01/28/nginx-003/"/>
+    <id>https://foggsz.github.io/2020/01/28/nginx-003/</id>
+    <published>2020-01-28T12:52:57.000Z</published>
+    <updated>2020-01-30T08:45:19.007Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;TLS通讯过程&quot;&gt;&lt;a href=&quot;#TLS通讯过程&quot; class=&quot;headerlink&quot; title=&quot;TLS通讯过程&quot;&gt;&lt;/a&gt;TLS通讯过程&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;验证身份
+达成安全套件共识
+传递密钥
+加密通讯
+
+1、client hello： 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Nginx" scheme="https://foggsz.github.io/categories/Nginx/"/>
+    
+    
+      <category term="Nginx" scheme="https://foggsz.github.io/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>nginx-002</title>
