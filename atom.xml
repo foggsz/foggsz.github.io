@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foggsz.github.io/"/>
-  <updated>2020-01-30T08:45:19.007Z</updated>
+  <updated>2020-02-20T07:48:19.935Z</updated>
   <id>https://foggsz.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx-004</title>
+    <link href="https://foggsz.github.io/2020/02/18/nginx-004/"/>
+    <id>https://foggsz.github.io/2020/02/18/nginx-004/</id>
+    <published>2020-02-18T07:41:59.000Z</published>
+    <updated>2020-02-20T07:48:19.935Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Nginx进程结构&quot;&gt;&lt;a href=&quot;#Nginx进程结构&quot; class=&quot;headerlink&quot; title=&quot;Nginx进程结构&quot;&gt;&lt;/a&gt;Nginx进程结构&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;master
+worker
+cache loader
+cache
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>nginx-003</title>
@@ -53,7 +79,7 @@
     <link href="https://foggsz.github.io/2020/01/11/nginx-002/"/>
     <id>https://foggsz.github.io/2020/01/11/nginx-002/</id>
     <published>2020-01-11T11:34:43.000Z</published>
-    <updated>2020-01-17T07:17:39.851Z</updated>
+    <updated>2020-02-03T03:01:51.409Z</updated>
     
     <summary type="html">
     
