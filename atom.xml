@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foggsz.github.io/"/>
-  <updated>2020-02-20T08:16:54.315Z</updated>
+  <updated>2020-02-20T08:18:52.360Z</updated>
   <id>https://foggsz.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://foggsz.github.io/2020/02/18/nginx-004-%E8%BF%9B%E7%A8%8B/"/>
     <id>https://foggsz.github.io/2020/02/18/nginx-004-%E8%BF%9B%E7%A8%8B/</id>
     <published>2020-02-18T07:41:59.000Z</published>
-    <updated>2020-02-20T08:16:54.315Z</updated>
+    <updated>2020-02-20T08:18:52.360Z</updated>
     
     <summary type="html">
     
@@ -110,7 +110,7 @@ cache
     <link href="https://foggsz.github.io/2020/01/01/hello-world/"/>
     <id>https://foggsz.github.io/2020/01/01/hello-world/</id>
     <published>2020-01-01T13:48:49.000Z</published>
-    <updated>2020-01-17T07:14:58.166Z</updated>
+    <updated>2020-02-20T08:19:40.741Z</updated>
     
     <summary type="html">
     
@@ -126,6 +126,8 @@ cache
     
     
     
+      <category term="Hello" scheme="https://foggsz.github.io/tags/Hello/"/>
+    
   </entry>
   
   <entry>
@@ -133,7 +135,7 @@ cache
     <link href="https://foggsz.github.io/2020/01/01/nginx-001-%E7%BC%96%E8%AF%91/"/>
     <id>https://foggsz.github.io/2020/01/01/nginx-001-%E7%BC%96%E8%AF%91/</id>
     <published>2020-01-01T13:48:49.000Z</published>
-    <updated>2020-02-20T08:17:45.840Z</updated>
+    <updated>2020-02-20T08:19:01.423Z</updated>
     
     <summary type="html">
     
