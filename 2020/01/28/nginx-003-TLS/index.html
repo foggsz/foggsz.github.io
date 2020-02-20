@@ -4,16 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="nginx-001, 雾">
-    <meta name="description" content="ngixn编译安装源码目录结构
-auto
-    cc: 编译
-    lib: 辅助编译
-    os： 系统特性
-    types： 辅助编译
-CHANGES: 每个版本的特性和bug修复
-CHANGES.ru: 俄语版说明
-conf">
+    <meta name="keywords" content="nginx-003, 雾">
+    <meta name="description" content="TLS通讯过程验证身份
+达成安全套件共识
+传递密钥
+加密通讯
+
+1、client hello：                2、server:
+     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +19,7 @@ conf">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>nginx-001 | 雾</title>
+    <title>nginx-003 | 雾</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +306,12 @@ conf">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">nginx-001</h1>
+                    <h1 class="description center-align post-title">nginx-003</h1>
                 </div>
             </div>
         </div>
@@ -455,7 +453,7 @@ conf">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-01
+                    2020-01-28
                 </div>
                 
 
@@ -472,50 +470,24 @@ conf">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="ngixn编译安装"><a href="#ngixn编译安装" class="headerlink" title="ngixn编译安装"></a>ngixn编译安装</h3><h4 id="源码目录结构"><a href="#源码目录结构" class="headerlink" title="源码目录结构"></a>源码目录结构</h4><hr>
-<pre><code>auto
-    cc: 编译
-    lib: 辅助编译
-    os： 系统特性
-    types： 辅助编译
-CHANGES: 每个版本的特性和bug修复
-CHANGES.ru: 俄语版说明
-conf: nginx配置示例文件
-configure: 用于生成中间文件、编译前的必备动作配置脚本
-    --with-module: 编译主动需要的模块， 默认不参加编译
-    --without-mpdule: 编译不需要的模块， 默认参加编译
-    --with-cc: 编辑加入特性
-    and so on...
-objs: 执行configure命令 生成的中间件文件  nginx版本升级 需要将objs迁移到目标目录
-    ngx_modules.c: 编译进nginx的模块列表
-    src: c语言编译生成文件
-    and so on 
-contrib: 脚本文件，语法提示
-html: 文件目录 50x./index.html
-man: nginx 帮助文件,指令介绍
-src: nginx源代码</code></pre><hr>
-<h4 id="编译成功"><a href="#编译成功" class="headerlink" title="编译成功"></a>编译成功</h4><hr>
-<pre><code>./configure 参数  
-make install 
-编译成功目录结构:
-    conf: 如上
-    sbin: nginx启动程序文件
-    html: 如上
-    logs: 日志
-基础语法: 指令块(花括号) 指令(分号结尾，多个参数空格分开)  $(变量)  #(注释)</code></pre><hr>
-<h4 id="重载、热部署"><a href="#重载、热部署" class="headerlink" title="重载、热部署"></a>重载、热部署</h4><hr>
-<pre><code>重载
--s  reload: 重启配置项，不停止服务的情况下，针对的是配置文件修改
-    stop: 停止nginx
+                <h3 id="TLS通讯过程"><a href="#TLS通讯过程" class="headerlink" title="TLS通讯过程"></a>TLS通讯过程</h3><pre><code>验证身份
+达成安全套件共识
+传递密钥
+加密通讯
 
-热部署
-1、把当前nginx 化为老文件  cp  sbin/nginx sbin/nginx.old
-2、复制objs生成的nginx二进制文件到 sbin/下 覆盖老nginx   
-3、查看nginx master主进程号  ps -ef | grep nginx
-4、kill -USR2 master进程号  启动升级新的nginx进程 老进程依然存在但不再监听80,443端口
-5、kill -WINCH master进程号  老master进程存在 woker进程退出, 请求现在由新master进程处理
-6、版本回退，cp sbin/nginx.old  sbin/nginx  kill -WINCH 新的master进程号   kill -HUP 从老的mater进程号 拉起工作进程</code></pre><hr>
+1、client hello：                2、server:
+     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密套件发送给客户端
+                                3、server  certificate:
+    client  certificate verify     将证书发送给客户端
+                                4、server hello done:
+                                    如果协商的是椭圆曲线算法，在3、4之间将公共参数发送给客户端
+                                    至此双方对安全套件达成共识      
 
+5、client 根据椭圆曲线算法生成自己的私钥，将公钥给服务端
+6、client 利用服务器端公钥和自己的私钥生成对称加密密钥key
+6、服务器端根据客户端的公钥和自己的私钥依据相同算法生成对称加密密钥key
+7、client finished
+7、server finished</code></pre>
             </div>
             <hr/>
 
@@ -530,7 +502,7 @@ make install
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://foggsz.github.io" rel="external nofollow noreferrer">fog</a>
+                    <a href="https://foggsz.github.io" rel="external nofollow noreferrer">foggsz</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -540,7 +512,7 @@ make install
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://foggsz.github.io/2020/01/01/nginx-001/">https://foggsz.github.io/2020/01/01/nginx-001/</a>
+                    <a href="https://foggsz.github.io/2020/01/28/nginx-003-TLS/">https://foggsz.github.io/2020/01/28/nginx-003-TLS/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -553,7 +525,7 @@ make install
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="https://foggsz.github.io" target="_blank">fog</a>
+                    <a href="https://foggsz.github.io" target="_blank">foggsz</a>
                     !
                 </span>
             </div>
@@ -750,7 +722,7 @@ make install
         repo: 'foggsz.github.io',
         owner: 'foggsz',
         admin: "foggsz",
-        id: '2020-01-01T21-48-49',
+        id: '2020-01-28T20-52-57',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -775,32 +747,50 @@ make install
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/01/hello-world/">
+                <a href="/2020/02/18/nginx-004-%E8%BF%9B%E7%A8%8B/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="nginx-004">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">nginx-004</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            Nginx进程结构master
+worker
+cache loader
+cache manager Nginx进程管理接收信号
+    TERM,INT         =&gt; stop
+        立即停止 
+    QUIT  
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-18
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            foggsz
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Nginx/" class="post-category">
+                                    Nginx
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -809,35 +799,28 @@ make install
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/01/nginx-001/">
+                <a href="/2020/01/11/nginx-002-%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="nginx-001">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="nginx-002">
                         
-                        <span class="card-title">nginx-001</span>
+                        <span class="card-title">nginx-002</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ngixn编译安装源码目录结构
-auto
-    cc: 编译
-    lib: 辅助编译
-    os： 系统特性
-    types： 辅助编译
-CHANGES: 每个版本的特性和bug修复
-CHANGES.ru: 俄语版说明
-conf
+                            ngixn搭建静态服务器搭建静态服务器(完整配置文件)    http{   
+            log_format  main  &#39;$remote_addr - $remote_user [$time_local] &qu
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-11
                             </span>
                         <span class="publish-author">
                             
@@ -851,7 +834,6 @@ conf
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

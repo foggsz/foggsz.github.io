@@ -4,14 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="nginx-003, 雾">
-    <meta name="description" content="TLS通讯过程验证身份
-达成安全套件共识
-传递密钥
-加密通讯
-
-1、client hello：                2、server:
-     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密">
+    <meta name="keywords" content="nginx-004, 雾">
+    <meta name="description" content="Nginx进程结构master
+worker
+cache loader
+cache manager Nginx进程管理接收信号
+    TERM,INT         =&amp;gt; stop
+        立即停止 
+    QUIT  ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>nginx-003 | 雾</title>
+    <title>nginx-004 | 雾</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">nginx-003</h1>
+                    <h1 class="description center-align post-title">nginx-004</h1>
                 </div>
             </div>
         </div>
@@ -453,7 +453,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-28
+                    2020-02-18
                 </div>
                 
 
@@ -470,24 +470,34 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="TLS通讯过程"><a href="#TLS通讯过程" class="headerlink" title="TLS通讯过程"></a>TLS通讯过程</h3><pre><code>验证身份
-达成安全套件共识
-传递密钥
-加密通讯
+                <h3 id="Nginx进程结构"><a href="#Nginx进程结构" class="headerlink" title="Nginx进程结构"></a>Nginx进程结构</h3><pre><code>master
+worker
+cache loader
+cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管理" class="headerlink" title="Nginx进程管理"></a>Nginx进程管理</h3><pre><code>接收信号
+    TERM,INT         =&gt; stop
+        立即停止 
+    QUIT             =&gt; quit
+        优雅的停止
+    HUP              =&gt; reload
+        重载配置文件
+    URT1             =&gt; reopen
+        日志切割
+        旧日志文件改名 旧文件名句柄依然存在 新产生的日志依然会写在旧文件名日志里
 
-1、client hello：                2、server:
-     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密套件发送给客户端
-                                3、server  certificate:
-    client  certificate verify     将证书发送给客户端
-                                4、server hello done:
-                                    如果协商的是椭圆曲线算法，在3、4之间将公共参数发送给客户端
-                                    至此双方对安全套件达成共识      
-
-5、client 根据椭圆曲线算法生成自己的私钥，将公钥给服务端
-6、client 利用服务器端公钥和自己的私钥生成对称加密密钥key
-6、服务器端根据客户端的公钥和自己的私钥依据相同算法生成对称加密密钥key
-7、client finished
-7、server finished</code></pre>
+    USR2
+    WINCH
+        kill命令执行</code></pre><h3 id="reload流程"><a href="#reload流程" class="headerlink" title="reload流程"></a>reload流程</h3><pre><code>1、向master进程发送HUP信号（reload)
+2、master进程校验配置语法是否正确
+3、master进程打开新的监听端口 （master进程统一管理worker进程，worker进程会继承master进程的端口等信息）
+4、master进程用新配置启动新的worker子进程
+5、master进程向老的worker进程发送QUIT信号(优雅退出 =&gt; 老的woker进程会在处理完当前链接后自动关闭)
+6、老的worker进程关闭监听的句柄，处理完当前链接后结束进程</code></pre><h3 id="热升级流程"><a href="#热升级流程" class="headerlink" title="热升级流程"></a>热升级流程</h3><pre><code>1、将新的nginx文件替换老的nginx文件（注意将老的nginx文件替换)
+2、向master进程发送USR2信号
+    USR2做的事情       
+    3、master进程修改pid文件名，加后缀.oldbin
+    4、mater进程用的新的nginx文件启动新的master进程
+5、向老master进程发送QUIT信号，关闭老master进程
+6、回滚向老master进程发送HUP,向新master进程发送QUIT</code></pre>
             </div>
             <hr/>
 
@@ -512,7 +522,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://foggsz.github.io/2020/01/28/nginx-003/">https://foggsz.github.io/2020/01/28/nginx-003/</a>
+                    <a href="https://foggsz.github.io/2020/02/18/nginx-004-%E8%BF%9B%E7%A8%8B/">https://foggsz.github.io/2020/02/18/nginx-004-%E8%BF%9B%E7%A8%8B/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -722,7 +732,7 @@
         repo: 'foggsz.github.io',
         owner: 'foggsz',
         admin: "foggsz",
-        id: '2020-01-28T20-52-57',
+        id: '2020-02-18T15-41-59',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -743,11 +753,12 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/02/18/nginx-004/">
+                <a href="/2020/02/18/nginx-004-%E8%BF%9B%E7%A8%8B/">
                     <div class="card-image">
                         
                         
@@ -769,16 +780,29 @@ cache manager Nginx进程管理接收信号
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-18
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            foggsz
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Nginx/" class="post-category">
+                                    Nginx
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -790,25 +814,30 @@ cache manager Nginx进程管理接收信号
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/11/nginx-002/">
+                <a href="/2020/01/28/nginx-003-TLS/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="nginx-002">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="nginx-003">
                         
-                        <span class="card-title">nginx-002</span>
+                        <span class="card-title">nginx-003</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ngixn搭建静态服务器搭建静态服务器(完整配置文件)    http{   
-            log_format  main  &#39;$remote_addr - $remote_user [$time_local] &qu
+                            TLS通讯过程验证身份
+达成安全套件共识
+传递密钥
+加密通讯
+
+1、client hello：                2、server:
+     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-28
                             </span>
                         <span class="publish-author">
                             

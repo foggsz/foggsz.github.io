@@ -4,14 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="nginx-004, 雾">
-    <meta name="description" content="Nginx进程结构master
-worker
-cache loader
-cache manager Nginx进程管理接收信号
-    TERM,INT         =&amp;gt; stop
-        立即停止 
-    QUIT  ">
+    <meta name="keywords" content="nginx-001, 雾">
+    <meta name="description" content="ngixn编译安装源码目录结构
+auto
+    cc: 编译
+    lib: 辅助编译
+    os： 系统特性
+    types： 辅助编译
+CHANGES: 每个版本的特性和bug修复
+CHANGES.ru: 俄语版说明
+conf">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@ cache manager Nginx进程管理接收信号
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>nginx-004 | 雾</title>
+    <title>nginx-001 | 雾</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +308,12 @@ cache manager Nginx进程管理接收信号
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">nginx-004</h1>
+                    <h1 class="description center-align post-title">nginx-001</h1>
                 </div>
             </div>
         </div>
@@ -426,12 +428,25 @@ cache manager Nginx进程管理接收信号
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Nginx/">
+                                <span class="chip bg-color">Nginx</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Nginx/" class="post-category">
+                                Nginx
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -440,7 +455,7 @@ cache manager Nginx进程管理接收信号
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-18
+                    2020-01-01
                 </div>
                 
 
@@ -457,33 +472,50 @@ cache manager Nginx进程管理接收信号
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Nginx进程结构"><a href="#Nginx进程结构" class="headerlink" title="Nginx进程结构"></a>Nginx进程结构</h3><pre><code>master
-worker
-cache loader
-cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管理" class="headerlink" title="Nginx进程管理"></a>Nginx进程管理</h3><pre><code>接收信号
-    TERM,INT         =&gt; stop
-        立即停止 
-    QUIT             =&gt; quit
-        优雅的停止
-    HUP              =&gt; reload
-        重载配置文件
-    URT1             =&gt; reopen
-        日志切割
-        旧日志文件改名 旧文件名句柄依然存在 新产生的日志依然会写在旧文件名日志里
+                <h3 id="ngixn编译安装"><a href="#ngixn编译安装" class="headerlink" title="ngixn编译安装"></a>ngixn编译安装</h3><h4 id="源码目录结构"><a href="#源码目录结构" class="headerlink" title="源码目录结构"></a>源码目录结构</h4><hr>
+<pre><code>auto
+    cc: 编译
+    lib: 辅助编译
+    os： 系统特性
+    types： 辅助编译
+CHANGES: 每个版本的特性和bug修复
+CHANGES.ru: 俄语版说明
+conf: nginx配置示例文件
+configure: 用于生成中间文件、编译前的必备动作配置脚本
+    --with-module: 编译主动需要的模块， 默认不参加编译
+    --without-mpdule: 编译不需要的模块， 默认参加编译
+    --with-cc: 编辑加入特性
+    and so on...
+objs: 执行configure命令 生成的中间件文件  nginx版本升级 需要将objs迁移到目标目录
+    ngx_modules.c: 编译进nginx的模块列表
+    src: c语言编译生成文件
+    and so on 
+contrib: 脚本文件，语法提示
+html: 文件目录 50x./index.html
+man: nginx 帮助文件,指令介绍
+src: nginx源代码</code></pre><hr>
+<h4 id="编译成功"><a href="#编译成功" class="headerlink" title="编译成功"></a>编译成功</h4><hr>
+<pre><code>./configure 参数  
+make install 
+编译成功目录结构:
+    conf: 如上
+    sbin: nginx启动程序文件
+    html: 如上
+    logs: 日志
+基础语法: 指令块(花括号) 指令(分号结尾，多个参数空格分开)  $(变量)  #(注释)</code></pre><hr>
+<h4 id="重载、热部署"><a href="#重载、热部署" class="headerlink" title="重载、热部署"></a>重载、热部署</h4><hr>
+<pre><code>重载
+-s  reload: 重启配置项，不停止服务的情况下，针对的是配置文件修改
+    stop: 停止nginx
 
-    USR2
-    WINCH
-        kill命令执行</code></pre><h3 id="reload流程"><a href="#reload流程" class="headerlink" title="reload流程"></a>reload流程</h3><pre><code>1、向master进程发送HUP信号（reload)
-2、master进程校验配置语法是否正确
-3、master进程打开新的监听端口 （master进程统一管理worker进程，worker进程会继承master进程的端口等信息）
-4、master进程用新配置启动新的worker子进程
-5、master进程向老的worker进程发送QUIT信号(优雅退出 =&gt; 老的woker进程会在处理完当前链接后自动关闭)
-6、老的worker进程关闭监听的句柄，处理完当前链接后结束进程</code></pre><h3 id="热升级流程"><a href="#热升级流程" class="headerlink" title="热升级流程"></a>热升级流程</h3><pre><code>1、将新的nginx文件替换老的nginx文件（注意将老的nginx文件替换)
-2、向master进程发送USR2信号
-3、master进程修改pid文件名，加后缀.oldbin
-4、mater进程用的新的nginx文件启动新的master进程
-5、向老master进程发送QUIT信号，关闭老master进程
-6、回滚向老master进程发送HUP,向新master进程发送QUIT</code></pre>
+热部署
+1、把当前nginx 化为老文件  cp  sbin/nginx sbin/nginx.old
+2、复制objs生成的nginx二进制文件到 sbin/下 覆盖老nginx   
+3、查看nginx master主进程号  ps -ef | grep nginx
+4、kill -USR2 master进程号  启动升级新的nginx进程 老进程依然存在但不再监听80,443端口
+5、kill -WINCH master进程号  老master进程存在 woker进程退出, 请求现在由新master进程处理
+6、版本回退，cp sbin/nginx.old  sbin/nginx  kill -WINCH 新的master进程号   kill -HUP 从老的mater进程号 拉起工作进程</code></pre><hr>
+
             </div>
             <hr/>
 
@@ -498,7 +530,7 @@ cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://foggsz.github.io" rel="external nofollow noreferrer">foggsz</a>
+                    <a href="https://foggsz.github.io" rel="external nofollow noreferrer">fog</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -508,7 +540,7 @@ cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://foggsz.github.io/2020/02/18/nginx-004/">https://foggsz.github.io/2020/02/18/nginx-004/</a>
+                    <a href="https://foggsz.github.io/2020/01/01/nginx-001-%E7%BC%96%E8%AF%91/">https://foggsz.github.io/2020/01/01/nginx-001-%E7%BC%96%E8%AF%91/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -521,7 +553,7 @@ cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管�
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="https://foggsz.github.io" target="_blank">foggsz</a>
+                    <a href="https://foggsz.github.io" target="_blank">fog</a>
                     !
                 </span>
             </div>
@@ -545,7 +577,11 @@ cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管�
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Nginx/">
+                                    <span class="chip bg-color">Nginx</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -714,7 +750,7 @@ cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管�
         repo: 'foggsz.github.io',
         owner: 'foggsz',
         admin: "foggsz",
-        id: '2020-02-18T15-41-59',
+        id: '2020-01-01T21-48-49',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -735,36 +771,29 @@ cache manager </code></pre><h3 id="Nginx进程管理"><a href="#Nginx进程管�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/18/nginx-004/">
+                <a href="/2020/01/01/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="nginx-004">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">nginx-004</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Nginx进程结构master
-worker
-cache loader
-cache manager Nginx进程管理接收信号
-    TERM,INT         =&gt; stop
-        立即停止 
-    QUIT  
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -773,7 +802,6 @@ cache manager Nginx进程管理接收信号
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -781,33 +809,35 @@ cache manager Nginx进程管理接收信号
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/28/nginx-003/">
+                <a href="/2020/01/01/nginx-001-%E7%BC%96%E8%AF%91/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="nginx-003">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="nginx-001">
                         
-                        <span class="card-title">nginx-003</span>
+                        <span class="card-title">nginx-001</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            TLS通讯过程验证身份
-达成安全套件共识
-传递密钥
-加密通讯
-
-1、client hello：                2、server:
-     浏览器支持的加密算法列表           服务器支持的加密算法列表，将倾向的加密
+                            ngixn编译安装源码目录结构
+auto
+    cc: 编译
+    lib: 辅助编译
+    os： 系统特性
+    types： 辅助编译
+CHANGES: 每个版本的特性和bug修复
+CHANGES.ru: 俄语版说明
+conf
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
                             </span>
                         <span class="publish-author">
                             
@@ -821,6 +851,7 @@ cache manager Nginx进程管理接收信号
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
