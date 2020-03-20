@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foggsz.github.io/"/>
-  <updated>2020-02-20T08:18:52.360Z</updated>
+  <updated>2020-03-20T14:33:58.408Z</updated>
   <id>https://foggsz.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实践redux的createStore</title>
+    <link href="https://foggsz.github.io/2020/03/20/%E5%AE%9E%E8%B7%B5redux%E7%9A%84createStore/"/>
+    <id>https://foggsz.github.io/2020/03/20/%E5%AE%9E%E8%B7%B5redux%E7%9A%84createStore/</id>
+    <published>2020-03-20T13:48:34.000Z</published>
+    <updated>2020-03-20T14:33:58.408Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;redux是一个不限于react、rn，也可用于其他开发框架的，通用状态管理解决方案。&lt;br&gt;其核心代码简练精妙，充分贯彻函数式编程及闭包思想&lt;br&gt;下面实践一个简单版本的createStore，一方面也是自我学习。 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   
+        
+      
+    
+    </summary>
+    
+    
+      <category term="react" scheme="https://foggsz.github.io/categories/react/"/>
+    
+    
+      <category term="react" scheme="https://foggsz.github.io/tags/react/"/>
+    
+      <category term="redux" scheme="https://foggsz.github.io/tags/redux/"/>
+    
+  </entry>
   
   <entry>
     <title>nginx-004</title>
@@ -110,7 +140,7 @@ cache
     <link href="https://foggsz.github.io/2020/01/01/hello-world/"/>
     <id>https://foggsz.github.io/2020/01/01/hello-world/</id>
     <published>2020-01-01T13:48:49.000Z</published>
-    <updated>2020-02-20T08:19:40.741Z</updated>
+    <updated>2020-02-20T09:00:26.018Z</updated>
     
     <summary type="html">
     
